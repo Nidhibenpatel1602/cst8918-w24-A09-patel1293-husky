@@ -50,3 +50,15 @@ jobs:
       - name: Process check
         if: always()
         run: exit $CHECK_STATUS
+
+  tflint:
+    name: TFLint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+      - name: TFLint
+        uses: dflook/terraform-github-actions/tflint@v1
+        with:
+          working-directory: infrastructure
